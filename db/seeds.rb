@@ -20,3 +20,5 @@ quote_list = [
 quote_list.each do |source, content|
   Quote.create( source: source, content: content )
 end
+
+Admin.create( email: 'test@test.com', password: 'test1234')
