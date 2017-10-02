@@ -1,6 +1,6 @@
 [ ![Codeship Status for Reinoptland/cheezy-quote](https://app.codeship.com/projects/b21a2b60-897b-0135-396b-4ea0e6564655/status?branch=master)](https://app.codeship.com/projects/248649)
 
-# :cheese_wedge: Cheezy-quote :cheese_wedge:
+# :full_moon: Cheezy-quote :full_moon:
 
 Cheezy-quote is an app that inspires you with deliciously cheesy quotes!
 
@@ -15,7 +15,7 @@ Cheezy-quote is an app that inspires you with deliciously cheesy quotes!
 * Continuous Integration through Codeship
   * All branches pushed to this repository are automatically tested.
   * This app deploys on heroku. The master branch is automatically tested and deploys upon passing the test suite.
-* [Automatically generated documentation using YARD](doc/index.html)
+* Automatically generated documentation using YARD
 
 
 # Setting up
@@ -35,15 +35,26 @@ Cheezy-quote is an app that inspires you with deliciously cheesy quotes!
     rake db:setup
     ```
 * Tests
-  * This app is tested with Rspec to run the tests use ->
-    ```
-    bundle exec rspec
-    ```
+
+
+  This app is tested with Rspec to run the tests use ->
+  ```
+  bundle exec rspec
+  ```
+
+* Documentation
+
+
+  The documentation for this app is automatically generated using yard.
+  To generate the documentation on your local machine use ->
+  ```
+  yard doc
+  ```
 
 * Services (job queues, cache servers, search engines, etc.)
+
   Coming soon
 
 * Deployment instructions
 
-
-If you want to deploy your own version use [the guide](https://devcenter.heroku.com/articles/getting-started-with-ruby#set-up) provided here by heroku:
+  If you want to deploy your own version use [this guide](https://devcenter.heroku.com/articles/getting-started-with-ruby#set-up) provided here by heroku:
