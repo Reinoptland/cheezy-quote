@@ -7,6 +7,7 @@ class AdminAuthicationFailure < Devise::FailureApp
     if http_auth?
       http_auth
     else
+      flash[:alert] = i18n_message unless flash[:notice]
       redirect_to "/"
     end
   end
