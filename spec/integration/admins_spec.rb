@@ -26,13 +26,14 @@ describe "the signin process", :type => :feature do
   end
 
   it "it locks the account after 3 invalid requests" do
-    pending("implement lockable")
-    visit '/admins/sign_in'
+    3.times do
+      visit '/admins/sign_in'
 
-    fill_in 'Email', with: 'user@example.com'
-    fill_in 'Password', with: 'wrongpassword'
+      fill_in 'Email', with: 'user@example.com'
+      fill_in 'Password', with: 'wrongpassword'
 
-    click_button 'Log in'
-    expect(page).to have_content 'Invalid Email or password'
+      click_button 'Log in'
+    end
+    expect(page).to have_content 'Your account is locked'
   end
 end
