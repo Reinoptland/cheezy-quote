@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <h1>Quotes</h1>
 
@@ -17,8 +16,10 @@
         <td><%= quote.source %></td>
         <td><%= quote.content %></td>
         <td><%= link_to 'Show', quote %></td>
-        <td><%= link_to 'Edit', edit_quote_path(quote) %></td>
-        <td><%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if admin_signed_in? %>
+          <td><%= link_to 'Edit', edit_quote_path(quote) %></td>
+          <td><%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +27,6 @@
 
 <br>
 
-<%= link_to 'New Quote', new_quote_path %>
+<% if admin_signed_in? %>
+  <%= link_to 'New Quote', new_quote_path %>
+<% end %>

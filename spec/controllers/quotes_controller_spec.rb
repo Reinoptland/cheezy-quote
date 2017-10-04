@@ -24,6 +24,8 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe QuotesController, type: :controller do
+  include Devise::Test::ControllerHelpers
+
 
   # This should return the minimal set of attributes required to create a valid
   # Quote. As you add validations to Quote, be sure to
@@ -38,6 +40,13 @@ RSpec.describe QuotesController, type: :controller do
     }
   }
 
+  let(:new_attributes) {
+    {
+      source: "Professor Prokhor Zakharov",
+      content: "I am very smart"
+    }
+  }
+
   let(:invalid_attributes) {
     {
       source: nil,
@@ -45,109 +54,144 @@ RSpec.describe QuotesController, type: :controller do
     }
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # QuotesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  context "Unauthenticated actions" do
+    describe "GET #index" do
+      it "returns a success response" do
+        Quote.create! valid_attributes
+        get :index, params: {}
+        expect(response).to be_success
+      end
+    end
 
-  describe "GET #index" do
-    it "returns a success response" do
-      Quote.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(response).to be_success
+    describe "GET #show" do
+      it "returns a success response" do
+        quote = Quote.create! valid_attributes
+        get :show, params: {id: quote.to_param}
+        expect(response).to be_success
+      end
     end
   end
 
-  describe "GET #show" do
-    it "returns a success response" do
-      quote = Quote.create! valid_attributes
-      get :show, params: {id: quote.to_param}, session: valid_session
-      expect(response).to be_success
+  context "Authenticated routes without authentication" do
+    describe "GET #new" do
+      it "returns a failure response" do
+        get :new, params: {}
+        expect(response).to redirect_to("/")
+      end
+    end
+
+    describe "GET #edit" do
+      it "returns a failure response" do
+        quote = Quote.create! valid_attributes
+        get :edit, params: {id: quote.to_param}
+        expect(response).to redirect_to("/")
+      end
+    end
+
+    describe "POST #create" do
+      it "returns a failure response" do
+        post :create, params: {quote: valid_attributes}
+        expect(response).to redirect_to("/")
+      end
+    end
+
+    describe "PUT #update" do
+      it "returns a failure response" do
+        quote = Quote.create! valid_attributes
+        put :update, params: {id: quote.to_param, quote: new_attributes}
+        expect(response).to redirect_to("/")
+      end
+    end
+
+    describe "DELETE #destroy" do
+      it "redirects to the quotes list" do
+        quote = Quote.create! valid_attributes
+        delete :destroy, params: {id: quote.to_param}
+        expect(response).to redirect_to("/")
+      end
     end
   end
 
-  describe "GET #new" do
-    it "returns a success response" do
-      get :new, params: {}, session: valid_session
-      expect(response).to be_success
-    end
-  end
+  context "Authenticated routes with authentication" do
+    login_admin
 
-  describe "GET #edit" do
-    it "returns a success response" do
-      quote = Quote.create! valid_attributes
-      get :edit, params: {id: quote.to_param}, session: valid_session
-      expect(response).to be_success
+    describe "GET #new" do
+      it "returns a success response" do
+        get :new, params: {}
+        expect(response).to be_success
+      end
     end
-  end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Quote" do
+    describe "GET #edit" do
+      it "returns a success response" do
+        quote = Quote.create! valid_attributes
+        get :edit, params: {id: quote.to_param}
+        expect(response).to be_success
+      end
+    end
+
+    describe "POST #create" do
+      context "with valid params" do
+        it "creates a new Quote" do
+          expect {
+            post :create, params: {quote: valid_attributes}
+          }.to change(Quote, :count).by(1)
+        end
+
+        it "redirects to the created quote" do
+          post :create, params: {quote: valid_attributes}
+          expect(response).to redirect_to(Quote.last)
+        end
+      end
+
+      context "with invalid params" do
+        it "returns a success response (i.e. to display the 'new' template)" do
+          post :create, params: {quote: invalid_attributes}
+          expect(response).to be_success
+        end
+      end
+    end
+
+    describe "PUT #update" do
+      context "with valid params" do
+
+        it "updates the requested quote" do
+          quote = Quote.create! valid_attributes
+          put :update, params: {id: quote.to_param, quote: new_attributes}
+          quote.reload
+          expect(quote.source).to eq("Professor Prokhor Zakharov")
+          expect(quote.content).to eq("I am very smart")
+        end
+
+        it "redirects to the quote" do
+          quote = Quote.create! valid_attributes
+          put :update, params: {id: quote.to_param, quote: valid_attributes}
+          expect(response).to redirect_to(quote)
+        end
+      end
+
+      context "with invalid params" do
+        it "returns a success response (i.e. to display the 'edit' template)" do
+          quote = Quote.create! valid_attributes
+          put :update, params: {id: quote.to_param, quote: invalid_attributes}
+          expect(response).to be_success
+        end
+      end
+    end
+
+    describe "DELETE #destroy" do
+      it "destroys the requested quote" do
+        quote = Quote.create! valid_attributes
         expect {
-          post :create, params: {quote: valid_attributes}, session: valid_session
-        }.to change(Quote, :count).by(1)
+          delete :destroy, params: {id: quote.to_param}
+        }.to change(Quote, :count).by(-1)
       end
 
-      it "redirects to the created quote" do
-        post :create, params: {quote: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Quote.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {quote: invalid_attributes}, session: valid_session
-        expect(response).to be_success
-      end
-    end
-  end
-
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        {
-          source: "Professor Prokhor Zakharov",
-          content: "I am very smart"
-        }
-      }
-
-      it "updates the requested quote" do
+      it "redirects to the quotes list" do
         quote = Quote.create! valid_attributes
-        put :update, params: {id: quote.to_param, quote: new_attributes}, session: valid_session
-        quote.reload
-        expect(quote.source).to eq("Professor Prokhor Zakharov")
-        expect(quote.content).to eq("I am very smart")
+        delete :destroy, params: {id: quote.to_param}
+        expect(response).to redirect_to(quotes_url)
       end
-
-      it "redirects to the quote" do
-        quote = Quote.create! valid_attributes
-        put :update, params: {id: quote.to_param, quote: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(quote)
-      end
-    end
-
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
-        quote = Quote.create! valid_attributes
-        put :update, params: {id: quote.to_param, quote: invalid_attributes}, session: valid_session
-        expect(response).to be_success
-      end
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested quote" do
-      quote = Quote.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: quote.to_param}, session: valid_session
-      }.to change(Quote, :count).by(-1)
-    end
-
-    it "redirects to the quotes list" do
-      quote = Quote.create! valid_attributes
-      delete :destroy, params: {id: quote.to_param}, session: valid_session
-      expect(response).to redirect_to(quotes_url)
     end
   end
 
