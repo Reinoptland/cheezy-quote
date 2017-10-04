@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Source:</strong>
@@ -9,6 +8,7 @@
   <strong>Content:</strong>
   <%= @quote.content %>
 </p>
-
-<%= link_to 'Edit', edit_quote_path(@quote) %> |
+<% if admin_signed_in? %>
+  <%= link_to 'Edit', edit_quote_path(@quote) %> |
+<% end %>
 <%= link_to 'Back', quotes_path %>
