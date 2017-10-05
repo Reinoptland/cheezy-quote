@@ -1,14 +1,1 @@
-
-<div class="quote_container">
-  <h1>
-    <%= @quote.content %>
-  </h1>
-  <h3>
-    - <%= @quote.source %>
-  </h3>
-
-  <% if admin_signed_in? %>
-    <%= link_to 'Edit', edit_quote_path(@quote) %>
-  <% end %>
-
-</div>
+<%= render @quote %>

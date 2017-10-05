@@ -2,14 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.quote_container {
+.quote {
   @include center_content;
   @include box-shadow(12px, 12px, 12px, 0px, darken($yellow, 10%));
   @include rounded-corners(74px, 20px, 74px, 20px);
 
   width: 65%;
   flex-direction: column;
-  padding: 50px;
+  padding: 40px;
+  margin: 20px;
   background-color: $grey;
 
   h1 {
@@ -20,4 +21,10 @@
   h3 {
     margin-left: auto;
   }
+}
+
+.quotes_container {
+  @include center_content;
+  flex-direction: column;
+  margin-bottom: 100px;
 }
