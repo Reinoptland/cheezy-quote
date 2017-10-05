@@ -70,6 +70,15 @@ RSpec.describe QuotesController, type: :controller do
         expect(response).to be_success
       end
     end
+
+    describe "GET #random" do
+      it "it renders a show template and returns a success response" do
+        create :quote
+        get :random
+        assert_template 'quotes/show'
+        expect(response).to be_success
+      end
+    end
   end
 
   context "Authenticated routes without authentication" do
