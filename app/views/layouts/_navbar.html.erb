@@ -1,0 +1,20 @@
+<nav>
+
+  <ul>
+    <% if notice %>
+      <li id="notice"><%= notice %></li>
+    <% end %>
+
+    <% if alert %>
+      <li id="alert"><%= alert %></li>
+    <% end %>
+
+    <% if admin_signed_in? %>
+       <li><%= link_to('Logout', destroy_admin_session_path, method: :delete) %></li>
+       <li><%= link_to 'New Quote', new_quote_path %></li>
+    <% end %>
+
+    <li><%= link_to 'Index', quotes_path %></li>
+  </ul>
+
+</nav>
