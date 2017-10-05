@@ -3,6 +3,7 @@ require 'rails_helper.rb'
 describe "the signin process", :type => :feature do
   before :each do
     Admin.create(email: 'user@example.com', password: 'password')
+    create :quote
   end
 
   it "signs in an admin" do

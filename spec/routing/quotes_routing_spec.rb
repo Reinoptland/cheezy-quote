@@ -39,5 +39,8 @@ RSpec.describe QuotesController, type: :routing do
       expect(:get => "/quotes/random").to route_to("quotes#random")
     end
 
+    it "routes root path to #random" do
+      expect(:get => "/").to route_to("quotes#random")
+    end
   end
 end
