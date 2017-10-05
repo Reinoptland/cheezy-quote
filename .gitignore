@@ -17,3 +17,8 @@
 /yarn-error.log
 
 .byebug_history
+
+# Don't include the generated yard documentation
+# in the repository since it can be generated locally
+/doc/*
+/.yardoc/*
