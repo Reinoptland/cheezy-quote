@@ -19,6 +19,13 @@ class QuotesController < ApplicationController
     @quote = Quote.new
   end
 
+  # GET /
+  # GET /quotes/random/
+  def random
+    @quote = Quote.random
+    render "show"
+  end
+
   # GET /quotes/1/edit
   def edit
   end

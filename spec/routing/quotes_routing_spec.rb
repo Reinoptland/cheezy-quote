@@ -35,5 +35,9 @@ RSpec.describe QuotesController, type: :routing do
       expect(:delete => "/quotes/1").to route_to("quotes#destroy", :id => "1")
     end
 
+    it "routes to #random" do
+      expect(:get => "/quotes/random").to route_to("quotes#random")
+    end
+
   end
 end
