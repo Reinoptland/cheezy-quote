@@ -1,0 +1,39 @@
+
+// colors
+$grey: #d1d2cd;
+$yellow: #fac000;
+$shadow: #B3B3B3;
+
+// Google fonts
+@import url(https://fonts.googleapis.com/css?family=Oswald|Suez+One);
+
+// Font Variables
+$suez: 'Suez One', serif;
+$oswald: 'Oswald', sans-serif;
+
+html, body {
+  @include center_content;
+
+  min-height: 100%;
+  margin: 0px;
+
+  background-color: $yellow;
+
+  font-family: $oswald;
+}
+
+h1 {
+  font-family: $suez;
+}
+
+h3 {
+  font-family: $oswald
+}
+
+#notice {
+  color: green;
+}
+
+#alert {
+  color: red;
+}

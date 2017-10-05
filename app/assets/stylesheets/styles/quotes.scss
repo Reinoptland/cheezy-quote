@@ -1,0 +1,23 @@
+// Place all the styles related to the Quotes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.quote_container {
+  @include center_content;
+  @include box-shadow(12px, 12px, 12px, 0px, darken($yellow, 10%));
+  @include rounded-corners(74px, 20px, 74px, 20px);
+
+  width: 65%;
+  flex-direction: column;
+  padding: 50px;
+  background-color: $grey;
+
+  h1 {
+    width: 80%;
+    line-height: 150%;
+  }
+
+  h3 {
+    margin-left: auto;
+  }
+}

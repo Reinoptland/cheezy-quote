@@ -1,14 +1,16 @@
 
-<p>
-  <strong>Source:</strong>
-  <%= @quote.source %>
-</p>
+<div class="quote_container">
+  <h1>
+    <%= @quote.content %>
+  </h1>
+  <h3>
+    - <%= @quote.source %>
+  </h3>
 
-<p>
-  <strong>Content:</strong>
-  <%= @quote.content %>
-</p>
-<% if admin_signed_in? %>
-  <%= link_to 'Edit', edit_quote_path(@quote) %> |
-<% end %>
+  <% if admin_signed_in? %>
+    <%= link_to 'Edit', edit_quote_path(@quote) %>
+  <% end %>
+
+</div>
+
 <%= link_to 'Index', quotes_path %>
