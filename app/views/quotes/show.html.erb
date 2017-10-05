@@ -1,14 +1,1 @@
-
-<p>
-  <strong>Source:</strong>
-  <%= @quote.source %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @quote.content %>
-</p>
-<% if admin_signed_in? %>
-  <%= link_to 'Edit', edit_quote_path(@quote) %> |
-<% end %>
-<%= link_to 'Index', quotes_path %>
+<%= render @quote %>

@@ -1,0 +1,17 @@
+@mixin rounded-corners($topleft, $topright, $bottomright, $bottomleft){
+  -webkit-border-radius: $topleft $topright $bottomright $bottomleft;
+  -moz-border-radius: $topleft $topright $bottomright $bottomleft;
+  border-radius: $topleft $topright $bottomright $bottomleft;
+}
+
+@mixin box-shadow($h-shadow, $v-shadow, $blur, $spread, $color){
+  -webkit-box-shadow: $h-shadow $v-shadow $blur $spread $color;
+  -moz-box-shadow: $h-shadow $v-shadow $blur $spread $color;
+  box-shadow: $h-shadow $v-shadow $blur $spread $color;
+}
+
+@mixin center_content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

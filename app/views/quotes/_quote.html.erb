@@ -1,0 +1,13 @@
+<div class='quote'>
+  <h1>
+    <%= quote.content %>
+  </h1>
+  <h3>
+    - <%= quote.source %>
+  </h3>
+
+  <% if admin_signed_in? %>
+    <%= link_to 'Edit', edit_quote_path(quote) %>
+    <%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</div>

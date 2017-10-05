@@ -9,13 +9,9 @@
   </head>
 
   <body>
-    <p id="notice"><%= notice %></p>
-    <p id="alert"><%= alert %></p>
-
-    <% if admin_signed_in? %>
-       <%= link_to('logout', destroy_admin_session_path, method: :delete) %>
-    <% end %>
 
     <%= yield %>
+    
+    <%= render "layouts/navbar" %>
   </body>
 </html>
