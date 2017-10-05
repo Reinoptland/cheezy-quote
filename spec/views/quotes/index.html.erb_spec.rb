@@ -18,14 +18,14 @@ RSpec.describe "quotes/index", type: :view do
   context "Public view" do
     it "renders a list of quotes" do
       render
-      assert_select "tr>td", :text => "Source".to_s, :count => 2
-      assert_select "tr>td", :text => "MyText".to_s, :count => 2
+      assert_select "h3", :text => "- Source".to_s, :count => 2
+      assert_select "h1", :text => "MyText".to_s, :count => 2
     end
 
     it "when an admin is not logged in it does not show links for edit, destroy" do
       render
-      assert_select "tr>td>a", :text => "Edit".to_s, :count => 0
-      assert_select "tr>td>a", :text => "Destroy".to_s, :count => 0
+      assert_select "a", :text => "Edit".to_s, :count => 0
+      assert_select "a", :text => "Destroy".to_s, :count => 0
     end
   end
 
@@ -35,8 +35,8 @@ RSpec.describe "quotes/index", type: :view do
     it "when an admin is logged it shows links for edit and destroy quote" do
       render
 
-      assert_select "tr>td>a", :text => "Edit".to_s, :count => 2
-      assert_select "tr>td>a", :text => "Destroy".to_s, :count => 2
+      assert_select "a", :text => "Edit".to_s, :count => 2
+      assert_select "a", :text => "Destroy".to_s, :count => 2
     end
   end
 
