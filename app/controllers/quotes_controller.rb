@@ -9,6 +9,12 @@ class QuotesController < ApplicationController
     @quotes = Quote.all
   end
 
+  # GET /quotes/search
+  def search
+    @quotes = Quote.search(params[:q]).records
+    render action: "index"
+  end
+
   # GET /quotes/1
   # GET /quotes/1.json
   def show
