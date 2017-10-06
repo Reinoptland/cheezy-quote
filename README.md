@@ -7,8 +7,9 @@ Cheezy-quote is an app that inspires you with deliciously cheesy quotes!
 # Features
 
 ### For Users
-* CRUD app for quotes
-* ...
+* Displays random quotes or a list of all quotes in the database
+* Admin functionality to add quotes or edit/destroy existing ones
+* Search function
 
 ### For Maintainers
 * Tested with RSpec
@@ -30,9 +31,20 @@ Cheezy-quote is an app that inspires you with deliciously cheesy quotes!
     ```
     bundle install
     ```
-  2. Create and seed the database ->
+  2. Create, load schema and seed the database ->
     ```  
     rake db:setup
+    ```
+  3. Install and start elasticsearch ->
+    ```  
+    brew install elasticsearch
+
+    elasticsearch
+    --config=/usr/local/opt/elasticsearch/config/elasticsearch.yml
+    ```
+  4. Import data from your models into elastic search->
+    ```  
+    bundle exec rake environment elasticsearch:import:model CLASS='Quote'
     ```
 * Tests
 
@@ -51,9 +63,9 @@ Cheezy-quote is an app that inspires you with deliciously cheesy quotes!
   yard doc
   ```
 
-* Services (job queues, cache servers, search engines, etc.)
+* Services
+  * The search functionality is powered by elasticsearch-rails. For more information visit [their github repository](https://github.com/elastic/elasticsearch-rails/tree/master/elasticsearch-rails)
 
-  Coming soon
 
 * Deployment instructions
 

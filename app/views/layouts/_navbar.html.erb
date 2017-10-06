@@ -16,6 +16,12 @@
 
     <li><%= link_to 'All Quotes', quotes_path %></li>
     <li><%= link_to 'Random Quote', quotes_random_path %></li>
+    <li>
+      <%= form_tag search_quotes_path, method: 'get' do %>
+        <%= text_field_tag :q, params[:q], :class => 'search_field' %>
+        <%= submit_tag :search, :class => 'search_button'%>
+      <% end %>
+    </li>
   </ul>
 
 </nav>
