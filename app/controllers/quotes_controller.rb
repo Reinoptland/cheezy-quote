@@ -12,6 +12,9 @@ class QuotesController < ApplicationController
   # GET /quotes/search
   def search
     @quotes = Quote.search(params[:q]).records
+    if @quotes.records == []
+      @quotes = [Quote.display_not_found]
+    end
     render action: "index"
   end
 

@@ -24,4 +24,13 @@ describe "searching quotes", :type => :feature do
 
     expect(page).to have_content 'The allknowing source'
   end
+
+  it "displays feedback when nothing is found" do
+    visit '/'
+
+    fill_in 'q', with: 'nonexistent'
+    click_on 'search'
+
+    expect(page).to have_content 'We didn\'t find anything, sorry!'
+  end
 end
