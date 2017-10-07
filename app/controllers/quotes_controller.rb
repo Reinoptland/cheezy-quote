@@ -1,6 +1,7 @@
 class QuotesController < ApplicationController
 
-  before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :authenticate_admin!, only: [:new, :edit, :create, :update,
+    :destroy, :score_quotes_along_cheesiness_scale]
   before_action :set_quote, only: [:show, :edit, :update, :destroy]
 
   # GET /quotes
@@ -77,6 +78,14 @@ class QuotesController < ApplicationController
       format.html { redirect_to quotes_url, notice: 'Quote was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def score_quotes_along_cheesiness_scale
+    Quote.all.each do |quote|
+      quote.get_total_results
+      quote.save
+    end
+    CheesyScaleService.new.score_quotes_along_cheesiness_scale
   end
 
   private
