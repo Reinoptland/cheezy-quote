@@ -1,24 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe CheesyScaleService, type: :service do
-  it 'defines reference_values for the cheesyscale' do
-    results = 0
-    11.times do
-      create(:quote, total_search_results: results)
-      results += 100
-    end
-
-    reference_values = CheesyScaleService.new.define_cheesy_scale(11)
-    expect(reference_values).to eql([100, 300, 500, 700, 900])
-  end
-
   it 'assigns a value on the cheesy_scale to a quote according to its total_search_result' do
-    cheesy_scale_reference_values = [100, 300, 500, 700, 900]
-    highest_total_search_results = 1000
-    quote = create(:quote, total_search_results: 600)
+    cheesy_scale = create(:cheesy_scale)
+    quote = create(:quote, total_search_results: 600, cheesy_score: nil)
 
     CheesyScaleService.new
-    .assign_cheesy_score(quote, cheesy_scale_reference_values, highest_total_search_results)
+    .assign_cheesy_score(quote, cheesy_scale)
 
     expect(quote.cheesy_score).to be 3
   end
