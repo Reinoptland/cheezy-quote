@@ -10,4 +10,13 @@ RSpec.describe Quote, type: :model do
 
     expect(random_quotes[0]).not_to be(random_quotes[1])
   end
+
+  it 'requests the totalresults from a google search' do
+    quote = create :quote
+    quote.inspect
+
+    quote.get_total_results
+
+    expect(quote.total_search_results).to be_an(Integer)
+  end
 end
