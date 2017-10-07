@@ -18,7 +18,7 @@ RSpec.describe CheesyScaleService, type: :service do
       results += 100
     end
 
-    CheesyScaleService.new.score_quotes_along_cheesiness_scale
+    CheesyScaleService.new.score_quotes_along_cheesy_scale
 
     Quote.all.each do |quote|
       expect(quote.cheesy_score).to be_an(Integer)
@@ -34,7 +34,7 @@ RSpec.describe CheesyScaleService, type: :service do
       results += 100
     end
 
-    CheesyScaleService.new.score_quotes_along_cheesiness_scale
+    CheesyScaleService.new.score_quotes_along_cheesy_scale
 
     quote_without_total_search_results = Quote.where(total_search_results: nil).first
     expect(quote_without_total_search_results.cheesy_score).to be nil
