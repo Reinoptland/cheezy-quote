@@ -21,7 +21,6 @@ class CheesyScaleService
   end
 
   def assign_cheesy_score(quote, reference_values, highest_total_search_results)
-    puts quote.inspect
     # Method that assigns a cheesy score from 0 to 5 according to cheesy_scale reference_values
     case quote[:total_search_results]
       when 0..reference_values[0] then quote[:cheesy_score] = 0
@@ -37,10 +36,10 @@ class CheesyScaleService
   def score_quotes_along_cheesiness_scale
     number_of_records_with_total_search_results = Quote.count(:total_search_results)
     highest_total_search_results = Quote.maximum(:total_search_results)
-
     reference_values = define_cheesy_scale(number_of_records_with_total_search_results)
+    all_quotes_with_total_search_results = Quote.where.not(total_search_results: [nil])
 
-    Quote.all.each do |quote|
+    all_quotes_with_total_search_results.each do |quote|
       assign_cheesy_score(quote, reference_values, highest_total_search_results)
       quote.save
     end

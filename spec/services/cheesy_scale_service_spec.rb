@@ -40,9 +40,24 @@ RSpec.describe CheesyScaleService, type: :service do
     service = CheesyScaleService.new
     service.score_quotes_along_cheesiness_scale
 
-    Quote.all.each_with_index do |quote, index|
+    Quote.all.each do |quote|
       expect(quote.cheesy_score).to be_an(Integer)
       expect(quote.cheesy_score).to be <= 5
     end
+  end
+
+  it 'does not score quotes that have no total_search_results' do
+    create(:quote, total_search_results: nil)
+    results = 0
+    10.times do
+      create(:quote, total_search_results: results)
+      results += 100
+    end
+
+    service = CheesyScaleService.new
+    service.score_quotes_along_cheesiness_scale
+
+    quote_with_total_search_results = Quote.where(total_search_results: nil).first
+    expect(quote_with_total_search_results.cheesy_score).to be nil
   end
 end
