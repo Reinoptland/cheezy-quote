@@ -1,14 +1,4 @@
 class CheesyScaleService
-  def get_total_results(content)
-    key = "AIzaSyA5fgcdiQETqVww3Mb9lH6Endu_9XWyAyU"
-    cse = "014532163075185725574:_hkfc83wdlk"
-    uri = URI.parse("https://www.googleapis.com/customsearch/v1?key=#{key}&cx=#{cse}&q=\"#{content}\"")
-
-    response = Net::HTTP.get_response(uri)
-    hash = JSON.parse response.body
-    hash["searchInformation"]["totalResults"].to_i
-  end
-
   def define_cheesy_scale(number_of_records)
     # Method calculates 5 reference_values of total_search_results
     # They are spaced in asc. order at 10%, 30%, 50%, 70% and 90%
