@@ -142,12 +142,14 @@ RSpec.describe QuotesController, type: :controller do
     describe "POST #create" do
       context "with valid params" do
         it "creates a new Quote" do
+          create(:cheesy_scale)
           expect {
             post :create, params: {quote: valid_attributes}
           }.to change(Quote, :count).by(1)
         end
 
         it "redirects to the created quote" do
+          create(:cheesy_scale)
           post :create, params: {quote: valid_attributes}
           expect(response).to redirect_to(Quote.last)
         end

@@ -83,6 +83,10 @@ class QuotesController < ApplicationController
 
   # PUT /quotes/update_cheesy_score
   def score_quotes_along_cheesy_scale
+    Quote.where(total_search_results: [nil]).each do |quote|
+      quote.get_total_results
+      quote.save
+    end
     CheesyScaleService.new.score_quotes_along_cheesy_scale
   end
 

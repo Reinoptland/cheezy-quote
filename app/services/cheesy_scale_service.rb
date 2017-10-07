@@ -19,7 +19,7 @@ class CheesyScaleService
     quote
   end
 
-  def score_quotes_along_cheesiness_scale
+  def score_quotes_along_cheesy_scale
     cheesy_scale = CheesyScale.new.define_scale
     cheesy_scale.save
     all_quotes_with_total_search_results = Quote.where.not(total_search_results: [nil])
