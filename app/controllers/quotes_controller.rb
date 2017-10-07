@@ -49,6 +49,7 @@ class QuotesController < ApplicationController
       if @quote.save
         format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
         format.json { render :show, status: :created, location: @quote }
+        ScoreAlongCheesyScaleJob.perform_later(@quote)
       else
         format.html { render :new }
         format.json { render json: @quote.errors, status: :unprocessable_entity }
@@ -80,12 +81,9 @@ class QuotesController < ApplicationController
     end
   end
 
-  def score_quotes_along_cheesiness_scale
-    Quote.all.each do |quote|
-      quote.get_total_results
-      quote.save
-    end
-    CheesyScaleService.new.score_quotes_along_cheesiness_scale
+  # PUT /quotes/update_cheesy_score
+  def score_quotes_along_cheesy_scale
+    CheesyScaleService.new.score_quotes_along_cheesy_scale
   end
 
   private
