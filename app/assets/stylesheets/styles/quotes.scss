@@ -21,6 +21,24 @@
   h3 {
     margin-left: auto;
   }
+
+  .cheesy_score_container {
+    @include center_content;
+    flex-direction: row;
+
+    h2{
+      display: flex;
+      margin-left: 0;
+    }
+
+    img {
+      display: flex;
+      max-height: 160px;
+      max-width: 160px;
+      height: 10%;
+      width: 10%;
+    }
+  }
 }
 
 .quotes_container {

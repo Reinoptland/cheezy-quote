@@ -12,6 +12,7 @@ RSpec.describe Quote, type: :model do
   end
 
   it 'requests the totalresults from a google search' do
+    skip "For the google search quota"
     quote = create :quote
     quote.inspect
 
