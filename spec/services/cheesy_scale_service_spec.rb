@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe CheesyScaleService, type: :service do
   it 'defines reference_values for the cheesyscale' do
     results = 0
-    10.times do
+    11.times do
       create(:quote, total_search_results: results)
       results += 100
     end
 
-    reference_values = CheesyScaleService.new.define_cheesy_scale(10)
+    reference_values = CheesyScaleService.new.define_cheesy_scale(11)
     expect(reference_values).to eql([100, 300, 500, 700, 900])
   end
 
@@ -39,7 +39,7 @@ RSpec.describe CheesyScaleService, type: :service do
   end
 
   it 'does not score quotes that have no total_search_results' do
-    create(:quote, total_search_results: nil)
+    create(:quote, total_search_results: nil, cheesy_score: nil)
     results = 0
     10.times do
       create(:quote, total_search_results: results)
@@ -48,7 +48,7 @@ RSpec.describe CheesyScaleService, type: :service do
 
     CheesyScaleService.new.score_quotes_along_cheesiness_scale
 
-    quote_with_total_search_results = Quote.where(total_search_results: nil).first
-    expect(quote_with_total_search_results.cheesy_score).to be nil
+    quote_without_total_search_results = Quote.where(total_search_results: nil).first
+    expect(quote_without_total_search_results.cheesy_score).to be nil
   end
 end

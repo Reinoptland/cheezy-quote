@@ -24,3 +24,5 @@ class Quote < ApplicationRecord
     self.total_search_results = hash["searchInformation"]["totalResults"].to_i
   end
 end
+
+Quote.import

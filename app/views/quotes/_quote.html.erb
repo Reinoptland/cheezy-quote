@@ -7,14 +7,27 @@
   </h3>
 
   <div class='cheesy_score_container'>
-    <h2>Cheesiness Score:</h2>
-    <% quote.cheesy_score.times do %>
-      <%= image_tag('cheese.png', :class => "full_wegde") %>
-    <% end%>
+    <% if quote.cheesy_score.is_a? Integer %>
 
-    <% (5 - quote.cheesy_score).times do %>
-      <%= image_tag('empty_cheese.png', :class => "empty_wegde") %>
-    <% end%>
+      <h2>Cheesiness Score:</h2>
+
+      <% quote.cheesy_score.times do %>
+        <%= image_tag('cheese.png', :class => "full_wegde") %>
+      <% end%>
+
+      <% (5 - quote.cheesy_score).times do %>
+        <%= image_tag('empty_cheese.png', :class => "empty_wegde") %>
+      <% end%>
+
+    <% else %>
+
+      <h2>No Cheesiness Score Yet!</h2>
+
+      <% 5.times do %>
+        <%= image_tag('cheese_questionmark.png', :class => "question_wegde") %>
+      <% end%>
+
+    <% end %>
   </div>
 
   <% if admin_signed_in? %>

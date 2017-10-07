@@ -26,6 +26,12 @@ RSpec.describe "quotes/show", type: :view do
       assert_select "img.full_wegde", :count => 3
       assert_select "img.empty_wegde", :count => 2
     end
+
+    it "it displays questionmark chees wedges when the quote has no cheesy_score" do
+      @quote = assign(:quote, create(:quote, cheesy_score: nil))
+      render
+      assert_select "img.question_wegde", :count => 5
+    end
   end
 
   context "Admin authenticated view" do

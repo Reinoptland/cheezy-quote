@@ -4,7 +4,7 @@ class CheesyScaleService
     # They are spaced in asc. order at 10%, 30%, 50%, 70% and 90%
     reference_point_ids = (number_of_records/10).step(number_of_records, (number_of_records/5)).to_a
     reference_values = []
-    reference_point_ids.each do |point|
+    reference_point_ids[0..4].each do |point|
      reference_values << Quote.order(:total_search_results)[point].total_search_results
     end
     reference_values
