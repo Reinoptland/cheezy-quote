@@ -22,3 +22,6 @@
 # in the repository since it can be generated locally
 /doc/*
 /.yardoc/*
+
+# Don't include environment variables
+config/environment_variables.yml

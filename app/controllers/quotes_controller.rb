@@ -1,6 +1,7 @@
 class QuotesController < ApplicationController
 
-  before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :authenticate_admin!, only: [:new, :edit, :create, :update,
+    :destroy, :score_quotes_along_cheesiness_scale]
   before_action :set_quote, only: [:show, :edit, :update, :destroy]
 
   # GET /quotes
@@ -48,6 +49,7 @@ class QuotesController < ApplicationController
       if @quote.save
         format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
         format.json { render :show, status: :created, location: @quote }
+        ScoreAlongCheesyScaleJob.perform_later(@quote)
       else
         format.html { render :new }
         format.json { render json: @quote.errors, status: :unprocessable_entity }
@@ -77,6 +79,15 @@ class QuotesController < ApplicationController
       format.html { redirect_to quotes_url, notice: 'Quote was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # PUT /quotes/update_cheesy_score
+  def score_quotes_along_cheesy_scale
+    Quote.where(total_search_results: [nil]).each do |quote|
+      quote.get_total_results
+      quote.save
+    end
+    CheesyScaleService.new.score_quotes_along_cheesy_scale
   end
 
   private

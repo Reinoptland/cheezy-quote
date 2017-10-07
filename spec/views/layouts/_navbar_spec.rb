@@ -25,6 +25,7 @@ RSpec.describe "layouts/_navbar", type: :view do
       assert_select "a", :text => "All Quotes".to_s, :count => 1
       assert_select "a", :text => "Logout".to_s, :count => 1
       assert_select "a", :text => "New Quote".to_s, :count => 1
+      assert_select "a", :text => "Update Cheesy Score".to_s, :count => 1
     end
   end
 end
