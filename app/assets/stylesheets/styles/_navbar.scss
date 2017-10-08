@@ -4,7 +4,8 @@ nav {
   left: 0;
   z-index: 9999;
   width: 100%;
-  height: 10%;
+  height: 15%;
+  max-height: 100px;
   background-color: lighten($yellow, 30%);
 
   ul {
@@ -18,11 +19,11 @@ nav {
     li {
       @include rounded-corners(12px, 30px, 12px, 30px);
 
-      font-size: 30px;
+      font-size: 1.5em;
 
       background-color: $blue;
       display: flex;
-      padding: 20px;
+      padding: 0.5em;
       color: white;
 
       a {
@@ -31,27 +32,11 @@ nav {
       }
 
       .search_field {
-        background-color: lighten($blue, 20%);
-        border: none;
-        border-radius: 5px;
-        color: white;
-        font-size: 20px;
-        font-family: $oswald;
-        height: 30px;
+        @include field;
       }
 
       .search_button {
-        border: none;
-        border-radius: 5px;
-        box-shadow: 0 9px #999;
-        color: white;
-        font-size: 30px;
-        font-family: $suez;
-
-        &:active {
-          box-shadow: 0 5px #666;
-          transform: translateY(4px);
-        }
+        @include action;
       }
     }
 

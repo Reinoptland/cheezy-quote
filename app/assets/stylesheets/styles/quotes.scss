@@ -7,10 +7,11 @@
   @include box-shadow(12px, 12px, 12px, 0px, darken($yellow, 10%));
   @include rounded-corners(74px, 20px, 74px, 20px);
 
-  width: 65%;
+
   flex-direction: column;
-  padding: 40px;
-  margin: 20px;
+  width: 80%;
+  padding: 1em;
+  margin: 0.5em;
   background-color: $grey;
 
   h1 {
@@ -20,7 +21,8 @@
 
   h3 {
     margin-left: auto;
-    font-size: 30px;
+    margin-right: 1em;
+    font-size: 2em;
   }
 
   a {
@@ -49,6 +51,7 @@
 
 .quotes_container {
   @include center_content;
+  min-height: 70vh;
   flex-direction: column;
-  margin-bottom: 100px;
+  margin-bottom: 10em;
 }

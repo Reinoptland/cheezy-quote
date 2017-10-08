@@ -12,6 +12,8 @@ $suez: 'Suez One', serif;
 $oswald: 'Oswald', sans-serif;
 
 html {
+  min-height: 100%;
+
   body {
     @include center_content;
     flex-direction: column;
@@ -42,10 +44,10 @@ h3, label {
 #logo {
   display: flex;
   margin: auto;
-  margin-bottom: 100px;
+  max-height: 274px;
+  height: 20vh;
+  margin-bottom: 1em;
 }
-
-
 
 .view_title {
   font-size: 4em;
