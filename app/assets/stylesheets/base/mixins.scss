@@ -39,3 +39,14 @@
     transform: translateY(4px);
   }
 }
+
+@mixin link {
+  background-color: darken($grey, 10%);
+
+  display: block;
+  text-decoration: none;
+
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}

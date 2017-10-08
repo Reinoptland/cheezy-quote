@@ -9,7 +9,7 @@
   <div class='cheesy_score_container'>
     <% if quote.cheesy_score.is_a? Integer %>
 
-      <h2>Cheesiness Score:</h2>
+      <h2>Cheesy Score:</h2>
 
       <% quote.cheesy_score.times do %>
         <%= image_tag('cheese.png', :class => "full_wegde") %>
@@ -21,7 +21,7 @@
 
     <% else %>
 
-      <h2>No Cheesiness Score Yet!</h2>
+      <h2>No Cheesy Score Yet!</h2>
 
       <% 5.times do %>
         <%= image_tag('cheese_questionmark.png', :class => "question_wegde") %>

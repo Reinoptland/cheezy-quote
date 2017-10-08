@@ -1,5 +1,5 @@
 
-// colors
+// Colors
 $grey: #d1d2cd;
 $yellow: #fac000;
 $blue: #2f9bcb;
@@ -39,50 +39,7 @@ h3, label {
   @include center_content;
 }
 
-form {
-  background-color: $blue;
-  @include rounded-corners(12px, 30px, 12px, 30px);
-
-  a {
-    @include action;
-    text-decoration: none;
-    margin-top: 2em;
-    background-color: darken($grey, 10%);
-  }
-}
-
-.form_style, .new_admin {
-  padding: 3em;
-}
-
-label {
-  display: block;
-}
-
 .view_title {
   font-size: 4em;
   margin-right: 2%;
-}
-
-.field {
-  input {
-    @include field;
-    height: 3em;
-    width: 10em;
-    margin: 1em;
-  }
-
-  textarea {
-    @include field;
-    height: 20em;
-    width: 30em;
-    margin: 1em;
-  }
-}
-
-.actions {
-  input {
-    @include action;
-    margin: 1em;
-  }
 }
