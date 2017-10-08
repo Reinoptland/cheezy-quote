@@ -1,5 +1,5 @@
 
-// colors
+// Colors
 $grey: #d1d2cd;
 $yellow: #fac000;
 $blue: #2f9bcb;
@@ -11,21 +11,43 @@ $blue: #2f9bcb;
 $suez: 'Suez One', serif;
 $oswald: 'Oswald', sans-serif;
 
-html, body {
-  @include center_content;
+html {
+  body {
+    @include center_content;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+    margin: 0px;
 
-  min-height: 100%;
-  margin: 0px;
+    background-color: $yellow;
 
-  background-color: $yellow;
+    font-family: $oswald;
 
-  font-family: $oswald;
+    #pagecontent {
+      @include center_content;
+      min-height: 100%;
+      margin: 0px;
+    }
+  }
 }
 
 h1, li {
   font-family: $suez;
 }
 
-h3 {
-  font-family: $oswald
+h3, label {
+  font-family: $oswald;
+}
+
+#logo {
+  display: flex;
+  margin: auto;
+  margin-bottom: 100px;
+}
+
+
+
+.view_title {
+  font-size: 4em;
+  margin-right: 2%;
 }

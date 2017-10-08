@@ -1,0 +1,41 @@
+form {
+  background-color: $blue;
+  @include rounded-corners(12px, 30px, 12px, 30px);
+
+  a {
+    @include action;
+    @include link;
+  }
+}
+
+label {
+  display: block;
+  font-size: 2em;
+}
+
+.form_style, .new_admin {
+  padding: 3em;
+}
+
+.field {
+  input {
+    @include field;
+    height: 3em;
+    width: 15em;
+    margin: 1em;
+  }
+
+  textarea {
+    @include field;
+    height: 10em;
+    width: 30em;
+    margin: 1em;
+  }
+}
+
+.actions {
+  input {
+    @include action;
+    margin: 1em;
+  }
+}
