@@ -4,7 +4,7 @@ form {
 
   a {
     @include action;
-
+    @include link;
   }
 }
 
