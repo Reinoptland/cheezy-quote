@@ -1,15 +1,15 @@
 [ ![Codeship Status for Reinoptland/cheezy-quote](https://app.codeship.com/projects/b21a2b60-897b-0135-396b-4ea0e6564655/status?branch=master)](https://app.codeship.com/projects/248649)
 
-# :full_moon: Cheezy-quote :full_moon:
+# :full_moon: Cheesy-Quote :full_moon:
 
-Cheezy-quote is an app that inspires you with deliciously cheesy quotes!
+Cheesy-Quote is an app that inspires you with deliciously cheesy quotes!
 
 # Features
 
 ### For Users
 * Displays random quotes or a list of all quotes in the database
 * Admin functionality to add quotes or edit/destroy existing ones
-* Search function
+* Search function powered by ElasticSearch
 * Quotes are scored on a CheesyScale™ that indicate how cheesy they are
 
 ### For Maintainers

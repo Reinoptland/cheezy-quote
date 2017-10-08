@@ -20,6 +20,12 @@
 
   h3 {
     margin-left: auto;
+    font-size: 30px;
+  }
+
+  a {
+    @include action;
+    @include link;
   }
 
   .cheesy_score_container {
@@ -28,7 +34,7 @@
 
     h2{
       display: flex;
-      margin-right: 15px
+      margin-right: 15px;
     }
 
     img {
