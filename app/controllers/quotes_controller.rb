@@ -88,6 +88,7 @@ class QuotesController < ApplicationController
       quote.save
     end
     CheesyScaleService.new.score_quotes_along_cheesy_scale
+    redirect_to root_path
   end
 
   private
