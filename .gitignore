@@ -24,4 +24,4 @@
 /.yardoc/*
 
 # Don't include environment variables
-config/environment_variables.yml
+config/environments/environment_variables.yml
