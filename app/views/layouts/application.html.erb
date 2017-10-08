@@ -9,9 +9,12 @@
   </head>
 
   <body>
+    <%= image_tag('logo.png', :id => "logo") %>
 
-    <%= yield %>
-    
-    <%= render "layouts/navbar" %>
+    <div id="pagecontent">
+      <%= yield %>
+
+      <%= render "layouts/navbar" %>
+    </div>
   </body>
 </html>

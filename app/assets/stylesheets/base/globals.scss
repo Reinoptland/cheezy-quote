@@ -12,13 +12,6 @@ $suez: 'Suez One', serif;
 $oswald: 'Oswald', sans-serif;
 
 html, body {
-  @include center_content;
-
-  min-height: 100%;
-  margin: 0px;
-
-  background-color: $yellow;
-
   font-family: $oswald;
 }
 
